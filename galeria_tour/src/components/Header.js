@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, Collapse, IconButton, Toolbar } from '@material-ui/core';
 import SortIcon from '@material-ui/icons/Sort';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Grow from '@material-ui/core/Grow';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    textAlign: 'center',
+  },
   title: {
     color: '#fff',
   },
@@ -27,9 +32,17 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     fontSize: '2rem',
   },
+  goDown: {
+    color: '#fff',
+    fontSize: '4rem',
+  },
 }));
 export default function Header() {
   const classes = useStyles();
+  const [check, setCheck] = useState(false);
+  useEffect(() => {
+    setCheck(true);
+  }, []);
   return (
     <div className={classes.root}>
       <AppBar className={classes.appbar} elevation={0}>
@@ -40,12 +53,22 @@ export default function Header() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <div className={classes.title}>
-        <h1>
-          Welcome to <br />
-          <span>Medellín Galeria Tour</span>
-        </h1>
-      </div>
+
+      <Collapse
+        in={check}
+        {...(check ? { timeout: 1000 } : {})}
+        collapsedHeight={50}
+      >
+        <div className={classes.container}>
+          <h1 className={classes.title}>
+            Welcome to <br />
+            <span>Medellín Galeria Tour</span>
+          </h1>
+          <IconButton>
+            <ExpandMoreIcon className={classes.goDown} />
+          </IconButton>
+        </div>
+      </Collapse>
     </div>
   );
 }
