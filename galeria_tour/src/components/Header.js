@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Collapse, IconButton, Toolbar } from '@material-ui/core';
 import SortIcon from '@material-ui/icons/Sort';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Grow from '@material-ui/core/Grow';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -44,7 +43,7 @@ export default function Header() {
     setCheck(true);
   }, []);
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id='header'>
       <AppBar className={classes.appbar} elevation={0}>
         <Toolbar className={classes.appbarWrapper}>
           <h1 className={classes.appbarTitle}>Medellín Galeria Tour.</h1>
@@ -53,7 +52,6 @@ export default function Header() {
           </IconButton>
         </Toolbar>
       </AppBar>
-
       <Collapse
         in={check}
         {...(check ? { timeout: 1000 } : {})}

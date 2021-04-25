@@ -1,8 +1,8 @@
-import './App.css';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import Header from './components/Header';
+import Tours from './components/Tours';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,13 +12,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
   },
 }));
-export default function () {
+export default function App() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Header />
-      {/* <h1>Medellín Galeria Tour</h1> */}
+      <Tours />
     </div>
   );
 }
