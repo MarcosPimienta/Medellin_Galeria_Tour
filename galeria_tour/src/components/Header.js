@@ -18,22 +18,31 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   appbar: {
-    background: 'none',
+    background: '#fff',
   },
   appbarTitle: {
     flexGrow: '1',
+    height: '100%',
+    backgroundImage: `url(${process.env.PUBLIC_URL + './assets/logo.png'})`,
+    backgroundRepeat: 'no-repeat',
+    objectFit: 'cover',
   },
   appbarWrapper: {
     width: '80%',
     margin: '0 auto',
   },
   icon: {
-    color: '#fff',
+    color: '#ddd',
     fontSize: '2rem',
   },
   goDown: {
     color: '#fff',
     fontSize: '4rem',
+  },
+  logo: {
+    height: '100px',
+    width: '100px',
+    marginRight: '80%',
   },
 }));
 export default function Header() {
@@ -46,7 +55,8 @@ export default function Header() {
     <div className={classes.root} id='header'>
       <AppBar className={classes.appbar} elevation={0}>
         <Toolbar className={classes.appbarWrapper}>
-          <h1 className={classes.appbarTitle}>Medellín Galeria Tour.</h1>
+          {/* <div className={classes.appbarTitle} /> */}
+          <img className={classes.logo} src='./assets/logo.png' />
           <IconButton>
             <SortIcon className={classes.icon} />
           </IconButton>
