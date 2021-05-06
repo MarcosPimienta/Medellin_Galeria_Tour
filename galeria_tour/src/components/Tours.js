@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageCard from './ImageCard';
-import useWindowPosition from '../hook/useWindowPosition';
+/* import useWindowPosition from '../hook/useWindowPosition'; */
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function Tours() {
   const classes = useStyles();
-  const checked = useWindowPosition('header');
+  /* const checked = useWindowPosition('header'); */
   return (
     <div className={classes.root}>
       <ImageCard />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Collapse, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, Collapse, IconButton, Toolbar, Menu } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
 import SortIcon from '@material-ui/icons/Sort';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
   },
   icon: {
+    marginRight: '50%',
     color: '#ddd',
     fontSize: '2rem',
   },
@@ -43,11 +45,21 @@ const useStyles = makeStyles((theme) => ({
     height: '100px',
     width: '100px',
     marginRight: '80%',
+    [theme.breakpoints.down('sm')]: {
+      marginRight: '50%',
+    },
   },
 }));
 export default function Header() {
   const classes = useStyles();
   const [check, setCheck] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   useEffect(() => {
     setCheck(true);
   }, []);
@@ -56,10 +68,29 @@ export default function Header() {
       <AppBar className={classes.appbar} elevation={0}>
         <Toolbar className={classes.appbarWrapper}>
           {/* <div className={classes.appbarTitle} /> */}
-          <img className={classes.logo} src='./assets/logo.png' />
-          <IconButton>
+          <img
+            className={classes.logo}
+            src='./assets/logo.png'
+            alt={'Medellin Galeria Tour'}
+          />
+          <IconButton
+            aria-controls='simple-menu'
+            aria-haspopup='true'
+            onClick={handleClick}
+          >
             <SortIcon className={classes.icon} />
           </IconButton>
+          <Menu
+            id='simple-menu'
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={handleClose}>Home</MenuItem>
+            <MenuItem onClick={handleClose}>About Us</MenuItem>
+            <MenuItem onClick={handleClose}>Tours</MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
       <Collapse
