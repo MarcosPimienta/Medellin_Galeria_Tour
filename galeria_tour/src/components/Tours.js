@@ -1,23 +1,28 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import ImageCard from './ImageCard';
-/* import useWindowPosition from '../hook/useWindowPosition'; */
+import { Carousel } from 'antd';
+import '../styles/Carousel.css';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: '100vh',
-    justifyContent: 'center',
-    display: 'flex',
-    alignItems: 'center',
-  },
-}));
 export default function Tours() {
-  const classes = useStyles();
-  /* const checked = useWindowPosition('header'); */
   return (
-    <div className={classes.root}>
-      <ImageCard />
-      <ImageCard />
-    </div>
+    <Carousel autoplay>
+      <div>
+        <h3 className='contentStyle'>
+          <img
+            className='bckg'
+            src='../assets/bg.jpg'
+            alt={'Medellin Galeria Tour'}
+          />
+        </h3>
+      </div>
+      <div>
+        <h3 className='contentStyle'>2</h3>
+      </div>
+      <div>
+        <h3 className='contentStyle'>3</h3>
+      </div>
+      <div>
+        <h3 className='contentStyle'>4</h3>
+      </div>
+    </Carousel>
   );
 }

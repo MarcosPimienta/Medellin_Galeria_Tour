@@ -1,113 +1,57 @@
+import { PageHeader, Button, Menu, Avatar } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Collapse, IconButton, Toolbar, Menu } from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
-import SortIcon from '@material-ui/icons/Sort';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {
+  HomeOutlined,
+  TeamOutlined,
+  SettingOutlined,
+  ShopOutlined,
+} from '@ant-design/icons';
+import 'antd/dist/antd.css';
+import '../index.css';
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    textAlign: 'center',
-  },
-  title: {
-    color: '#fff',
-  },
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-  },
-  appbar: {
-    background: '#fff',
-  },
-  appbarTitle: {
-    flexGrow: '1',
-    height: '100%',
-    backgroundImage: `url(${process.env.PUBLIC_URL + './assets/logo.png'})`,
-    backgroundRepeat: 'no-repeat',
-    objectFit: 'cover',
-  },
-  appbarWrapper: {
-    width: '80%',
-    margin: '0 auto',
-  },
-  icon: {
-    marginRight: '50%',
-    color: '#ddd',
-    fontSize: '2rem',
-  },
-  goDown: {
-    color: '#fff',
-    fontSize: '4rem',
-  },
-  logo: {
-    height: '100px',
-    width: '100px',
-    marginRight: '80%',
-    [theme.breakpoints.down('sm')]: {
-      marginRight: '50%',
-    },
-  },
-}));
-export default function Header() {
-  const classes = useStyles();
-  const [check, setCheck] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  useEffect(() => {
-    setCheck(true);
-  }, []);
+function Header() {
+  const { SubMenu } = Menu;
+  const [current, setCurrent] = useState(true);
   return (
-    <div className={classes.root} id='header'>
-      <AppBar className={classes.appbar} elevation={0}>
-        <Toolbar className={classes.appbarWrapper}>
-          {/* <div className={classes.appbarTitle} /> */}
-          <img
-            className={classes.logo}
-            src='./assets/logo.png'
-            alt={'Medellin Galeria Tour'}
-          />
-          <IconButton
-            aria-controls='simple-menu'
-            aria-haspopup='true'
-            onClick={handleClick}
-          >
-            <SortIcon className={classes.icon} />
-          </IconButton>
+    <div className='site-page-header-ghost-wrapper'>
+      <PageHeader
+        ghost={false}
+        /* onBack={() => window.history.back()}
+        title='Title'
+        subTitle='This is a subtitle' */
+        extra={[
           <Menu
-            id='simple-menu'
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
+            onClick={() => {
+              setCurrent(true);
+            }}
+            selectedKeys={[current]}
+            mode='horizontal'
           >
-            <MenuItem onClick={handleClose}>Home</MenuItem>
-            <MenuItem onClick={handleClose}>About Us</MenuItem>
-            <MenuItem onClick={handleClose}>Tours</MenuItem>
-          </Menu>
-        </Toolbar>
-      </AppBar>
-      <Collapse
-        in={check}
-        {...(check ? { timeout: 1000 } : {})}
-        collapsedHeight={50}
+            <Menu.Item key='home' icon={<HomeOutlined />}>
+              Home
+            </Menu.Item>
+            <Menu.Item key='us' icon={<TeamOutlined />}>
+              About Us
+            </Menu.Item>
+            <Menu.Item key='shop' icon={<ShopOutlined />}>
+              Tours
+            </Menu.Item>
+            <SubMenu key='SubMenu' icon={<SettingOutlined />} title='Language'>
+              <Menu.ItemGroup>
+                <Menu.Item key='setting:1'>English</Menu.Item>
+                <Menu.Item key='setting:2'>Español</Menu.Item>
+              </Menu.ItemGroup>
+            </SubMenu>
+          </Menu>,
+        ]}
       >
-        <div className={classes.container}>
-          <h1 className={classes.title}>
-            Welcome to <br />
-            <span>Medellín Galeria Tour</span>
-          </h1>
-          <IconButton>
-            <ExpandMoreIcon className={classes.goDown} />
-          </IconButton>
-        </div>
-      </Collapse>
+        <Avatar
+          size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+          /* src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' */
+          src='./assets/logo.png'
+        />
+      </PageHeader>
     </div>
   );
 }
+export default Header;
