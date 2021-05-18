@@ -44,13 +44,8 @@ function Header() {
             </SubMenu>
           </Menu>,
         ]}
-      >
-        <Avatar
-          size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
-          /* src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' */
-          src='./assets/logo.png'
-        />
-      </PageHeader>
+        avatar={{ src: 'https://i.ibb.co/nbZjYMQ/logo.png', size: 100 }}
+      ></PageHeader>
     </div>
   );
 }

@@ -7,7 +7,8 @@
 }
 .bckg {
         min-height: 100vh;
-        background-image:'../assets/bg.jpg';
-        background-repeat: 'no-repeat';
-        background-size: 'cover';
+        background-image: url("https://i.ibb.co/D7THWLR/bg.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
 }
